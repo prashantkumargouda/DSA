@@ -1,0 +1,341 @@
+//// q1 
+
+F1 Logistics
+Problem Description
+The Formula 1 Championship features a series of races held in various cities. The official race calendar for the current season has now been published.
+
+Each race occurs at a designated location (x, y) on a scheduled date. A vehicle may participate in several races, provided it is able to arrive at subsequent events within the required timeframe.
+
+The travel time between two races is determined by the Manhattan distance. Each vehicle travels at a rate of one unit of distance per day. If one race occurs on day d1 and another on day d2 (where d2 > d1), participation in both events is feasible only if d2 - d1 is greater than or equal to the calculated distance. A car may compete in only one race per day, and its starting location can be any event site.
+
+Participation in all races is mandatory. If cars cannot be transported for an event, a backup car is required. Since F1 cars are costly, teams must develop a transport plan and determine the minimum number of cars needed for all events, considering some races may occur simultaneously and one unit of distance can be covered starting on race day.
+
+Determine the minimum number of cars necessary to ensure coverage for all races.
+
+Constraints
+1 <= N <= 50
+
+-50 <= (X, Y) <= 50
+
+1 <= Day <= 200
+
+Input
+The first line specifies a single integer, N, denoting the total number of races scheduled for the season.
+
+The following line includes three space-separated integers: X and Y, which denote the coordinates of the event location, and DAY, which specifies the scheduled day of the event.
+
+Output
+Output a single integer represents the minimum number of cars needed.
+
+Time Limit (secs)
+1
+
+Examples
+Example 1
+
+Input
+
+4
+
+0 0 1
+
+7 0 2
+
+5 0 10
+
+0 5 11
+
+Output
+
+2
+
+Explanation
+
+In the above input there are 4 races.
+
+Race 1 at (0,0) on day 1, Race 2 at (7,0) on day 2 and so on.
+
+A race car will commence its participation in race 1. Due to distance of 7 units and the limited timeframe of only one day (2 - 1 = 1), it is not feasible for this car to be transported to race 2. Consequently, a separate car will begin in race 2. Subsequently, the vehicles from race 2 will be transferred to race 3, followed by the transportation of the car from race 1 to race 4.
+
+Example 2
+
+Input
+
+6
+
+5 -7 10
+
+3 -11 11
+
+7 -3 2
+
+5 -9 10
+
+7 -6 1
+
+5 -7 1
+
+Output
+
+3
+
+Explanation
+
+In the above input there are 6 races.
+
+Three cars will start from event at (7, -6) on day 1, (5, -7) on day 1 and (7, -3) at day2
+
+The car located at coordinates (7, -6) is scheduled for transport to coordinates (3, -11) on day 11. The car currently located at (5, -7) is scheduled for transport to (5, -9) on day 10. The car originating from coordinates (7, -3) is scheduled for transport to coordinates (5, -7) on day 10. Therefore, a minimum of three cars is required. 
+
+
+//// q2 ---------------------------->>>>>>>>>>>>>>>>>>----------------------->>>>>>>>>>>>>>>
+
+Rasikh Box
+Problem Description
+Rasikh wishes to engage with a box represented as an m × n matrix, which contains several stones marked by '*' at specified initial positions. Seeking guidance on how to rotate the box and determine the resulting arrangement of the stones, he approaches his uncle for instructions regarding the direction of rotation. His uncle, somewhat irritated by the interruption, provides Rasikh with random rotation instructions. The task is to determine the final configuration of the box, taking into account that after initial stage or after each rotation, gravity causes the stones to shift accordingly.
+
+The box is rotated in 90° angle in the direction as provided in the input.
+
+Consider the following example:
+
+com.tcs.cv.automata.ei.middleware.DocxToHtmlConverter@306851c7:image1.png
+
+com.tcs.cv.automata.ei.middleware.DocxToHtmlConverter@306851c7:image2.png
+
+Constraints
+3 <= M, N <= 200
+
+Input
+First line consists of M and N, representing rows and columns of the box, respectively.
+
+Next M line consists of N space-separated characters, either '.' or '*'. '.' - represents blank space while '*' represents stone in the box.
+
+Next line consists of K - number of instructions given by uncle.
+
+Next K lines represent instructions, either 'right' or 'left'.
+
+Output
+Final position of the box after processing the instructions.
+
+Time Limit (secs)
+1
+
+Examples
+Example 1
+
+Input
+
+4 4
+
+* * . .
+
+. * . .
+
+* * * .
+
+. * . .
+
+1
+
+right
+
+Output
+
+. . . .
+
+* . . .
+
+* * . .
+
+* * * *
+
+Explanation
+
+Explained in the figures above.
+
+Example 2
+
+Input
+
+3 4
+
+. . . .
+
+. * . *
+
+* * * *
+
+1
+
+left
+
+Output
+
+. . *
+
+. . *
+
+. * *
+
+. * *
+
+Explanation
+
+com.tcs.cv.automata.ei.middleware.DocxToHtmlConverter@306851c7:image3.pngcom.tcs.cv.automata.ei.middleware.DocxToHtmlConverter@306851c7:image4.png
+
+The initial position of the box is given. When the left rotation is applied to the box, the stone on the right side goes up and then the gravity plays its role.
+
+//// q3  ------------------------->>>>>>>>>>>>>>>>>>>>>>>>--------------------------->>>>>>>>>>>>>>>>>>>
+
+Futuris
+Problem Description
+In 2050, Ayra, a young coder, aims to set a Guinness World Record by creating "Futuris", a beginner-friendly yet powerful programming language inspired by Python.
+
+Ayra's goal is to make coding intuitive. Futuris uses Yes and No for conditional branches and end to close loops or blocks, making code flow clear without relying on indentation. The language supports multiple variables, arithmetic, and comparison operators (==, !=, <, >), allowing users to write nested loops and multi-level conditions easily. Ayra is testing Futuris with Artha, who is verifying its functionality using Python.
+
+Sample if syntax is shown below -
+
+if condition
+
+Yes
+
+<code to execute>
+
+end
+
+Sample if-else is shown below -
+
+if condition
+
+Yes
+
+<code to execute>
+
+No
+
+<code to execute>
+
+end
+
+*The condition will have only one boolean logic and the operands can be numbers or variables.
+
+Sample for loop is shown below -
+
+for iter_variable start end
+
+<code to execute>
+
+end
+
+*Both start and end are included. Both will be either values or variables
+
+The print syntax is given below -
+
+print variable
+
+or
+
+print value
+
+Ayra provided a few Futuris code examples and asked Artha to verify their correctness. Being a skilled Python programmer, Artha decided to write a script to validate them. Now, imagine yourself in Artha's place and try coding the verification.
+
+Constraints
+3 <= number of lines in the code <= 50
+
+Input
+The script with any of if, if-else , nested if, for and nested for will be present in the first few lines.
+
+Second last line has the variables used in the script, separated by space. The variable names will be A to Z.
+
+Last line consists of space separated integers denoting the values of variables mentioned in the above line.
+
+Output
+Print the output of the Ayra's code.
+
+Time Limit (secs)
+1
+
+Examples
+Example 1
+
+Input
+
+for i 1 2
+
+for j 1 3
+
+if i<j
+
+Yes
+
+print i
+
+No
+
+print j
+
+end
+
+end
+
+end
+
+A B
+
+1 2
+
+Output
+
+1
+
+1
+
+1
+
+1
+
+2
+
+2
+
+Explanation
+
+As you can see, the given psuedocode (Futuris) has two nested loops inside which there is an if-else condition, which upon evaluation will yield the above result.
+
+Example 2
+
+Input
+
+if A==1
+
+Yes
+
+print A
+
+No
+
+if A==2
+
+Yes
+
+print B
+
+No
+
+print 0
+
+end
+
+end
+
+A B
+
+2 5
+
+Output
+
+5
+
+Explanation
+
+As you can see that the psuedocode (Futuris) has an if-else condition, inside else there is another if-else condition, which upon evaluation will yield the above result.
