@@ -1,1 +1,0 @@
-hile( getline(cin , line) && line != "xx" ) 
