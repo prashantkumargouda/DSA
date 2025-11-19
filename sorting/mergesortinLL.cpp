@@ -74,7 +74,29 @@ Node* mergeSort(Node* &head) {
 
 Node* merge(Node* &l1 , Node* &l2) { 
     Node* ptr = new Node(0)  ; 
-    Node* curr = ptr ;  // assigning zero at the beginning why ? 
+    Node* curr = ptr ;  // assigning zero at the beginning why ?  
+
+    while( l1 != NULL && l2 != NULL ){ 
+        if( l1 -> next <= l2 -> next ) { 
+            curr -> next = l1 ;  
+            l1 = l1 -> next ; 
+        } 
+        else {  
+            curr -> next = l2 ; 
+            l2 = l2 -> next ; 
+        } 
+        curr = curr -> next ; 
+    } 
+
+    if( l1 != NULL ) { 
+        curr -> next = l1 ; 
+    }
+    if( l2 != NULL ) { 
+        curr -> next = l2 ;
+    } 
+
+    return ptr -> next ; 
+
 } 
 
 int main() { 
