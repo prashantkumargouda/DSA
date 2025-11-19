@@ -66,5 +66,4 @@ int main() {
     cout << countNo << endl; 
       
     return 0 ; 
-
 }
