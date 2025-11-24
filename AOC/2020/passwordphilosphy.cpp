@@ -44,7 +44,7 @@ int main() {
 
         ss >> num1 ; 
         ss.ignore(1,'-') ; 
-        ss >> num2 ; 
+        ss >> num2 ;  // it automatically ignores whitespaces 
         ss >> letter ;  
 
         ss.ignore(1,':') ;  

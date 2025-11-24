@@ -34,6 +34,7 @@ bool isValid(const string &block) {  // here const is used to avoid block gettin
     return true ; 
 }
 
+
 int main() { 
     string line ; // for each line 
     string current ; // for all the passport fields trying to keep all the ones separate with this current pointer 
