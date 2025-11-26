@@ -17,7 +17,7 @@ int main() {
     while(getline(cin , line)) { 
         codes.push_back(line) ; 
     }    
-
+    int minSeat = INT_MAX  ; 
     int maxSeat = INT_MIN ;  
 
     for( const string &code : codes ) { 
@@ -36,9 +36,11 @@ int main() {
 
         int seatId = row * 8 + col ; 
         if( maxSeat < seatId ) maxSeat = seatId ;  
-
-    }  
+        if( minSeat > seatId ) minSeat = seatId ; 
+        cout << seatId << " " ; 
+    }   
+    cout << endl; 
     cout << maxSeat << endl; 
-
+    cout << minSeat << endl;
     return 0 ; 
 }
