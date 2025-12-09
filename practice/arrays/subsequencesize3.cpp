@@ -1,5 +1,6 @@
 #include <iostream> 
 #include <vector> 
+#include <climits>
 
 using namespace std ;
 
@@ -38,11 +39,40 @@ vector<int> findSequence(vector<int> &arr){
     return {} ; 
 } 
 
+vector<int> find3Sequence(vector<int> &arr) {
+    int n = arr.size() ; 
+    
+    if( n < 3) return {} ; 
+
+    int first = arr[0] ; 
+    int second = INT_MAX ; 
+
+    int first_for_second = first ; // initially the first element for second is first only  
+
+    for(int i=1 ; i<n ; i++) {
+        if( arr[i] == first ) continue ; 
+
+        else if( arr[i] < first ) {
+            first = arr[i] ; 
+            continue ; 
+        }  
+        else if( arr[i] > first && arr[i] < second ) {
+            second = arr[i] ; 
+            first_for_second = first ; 
+        } 
+
+        else if( arr[i] > second ) { 
+            return {first_for_second , second , arr[i] } ;
+        }
+    } 
+
+    return {} ; 
+}
 
 
 int main() { 
-    vector<int> arr = {12, 11, 10, 5, 6, 2, 30}; 
-    vector<int> res = findSequence(arr) ;  
+    vector<int> arr =   {1, 2, -1, 7, 5} ; 
+    vector<int> res = find3Sequence(arr) ;  
 
     for(int x : res) {
         cout << x << " " ; 
