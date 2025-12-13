@@ -1,29 +1,49 @@
-ÿþ// find the maximum subarray sum  
+// find the maximum subarray sum  
 
 #include <iostream> 
 #include <vector> 
+#include <climits>
 
 using namespace std ; 
 
 int maxSubarraySum(vector<int> arr) {
-    int n = arr.size(; 
+    int n = arr.size() ; 
 
     int res = 0 ; 
 
     for(int i=0 ; i<n ; i++) {
         int currSum = arr[i] ; 
-        for(int j=i+1 ; j<n ; j++{
+        for(int j=i+1 ; j<n ; j++){
             currSum += arr[j] ;  
 
-            res = max(currSum , res;
+            res = max(currSum , res);
         }
     } 
 
     return res ;
 }
 
+int kadanes(vector<int> &arr) {
+    int n = arr.size() ; 
+
+    int maxSum = INT_MIN ;
+    int sum = 0 ; 
+
+    for(int i=0 ; i<n ; i++) { 
+        sum = sum + arr[i] ; 
+        maxSum = max(sum , maxSum) ;
+        if( sum < 0 ) {
+            sum = 0 ; 
+        }
+    } 
+
+    return maxSum ; 
+
+}
+
 int main() {
     vector<int> arr ={2, 3, -8, 7, -1, 2, 3};
     cout << maxSubarraySum(arr) << endl; 
-
-    return 0 ; 
+    cout << kadanes(arr) << endl ;
+    return 0 ;
+}
