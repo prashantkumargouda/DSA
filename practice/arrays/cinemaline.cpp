@@ -31,7 +31,7 @@ int main() {
                 count25-- ; 
             } 
             else if( count25 >= 3 ) {
-                count25-- ; 
+                count25 = count25 - 3  ; 
             }else {
                 cout << "NO" << endl; 
                 return 0 ; 
