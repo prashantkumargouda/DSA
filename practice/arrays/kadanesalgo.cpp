@@ -1,4 +1,10 @@
 // find the maximum subarray sum  
+// kadanes algorithm 
+// for finding the maximum subarray 
+// the idea is if the sum is less than 0 and we are trying to add something to it  
+// it is going to make that sum much more less  
+// than the actual value that is being added 
+// so better to make the sum = 0   
 
 #include <iostream> 
 #include <vector> 
@@ -42,7 +48,7 @@ int kadanes(vector<int> &arr) {
 }
 
 int main() {
-    vector<int> arr ={2, 3, -8, 7, -1, 2, 3};
+    vector<int> arr ={-2, -3, 4, -1, -2, 1, 5, -3} ;
     cout << maxSubarraySum(arr) << endl; 
     cout << kadanes(arr) << endl ;
     return 0 ;
