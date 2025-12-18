@@ -7,7 +7,7 @@
 using namespace std ; 
 
 int maxOnes(vector<int> &arr , int k ) {
-    // explorint all the possible subarrays 
+    // explore all the possible subarrays 
     int n = arr.size() ; 
     int res = INT_MIN ; 
     
