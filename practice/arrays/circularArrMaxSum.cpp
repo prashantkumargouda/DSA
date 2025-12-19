@@ -25,13 +25,34 @@ int maxSum1(vector<int> &arr ) {
     return res ; 
 } 
 
-//Better approach 
+// expected approach 
+int maxSum2(vector<int> &arr) {
+    int n = arr.size() ;  
 
+    int globalMax = arr[0] ; 
+    int globalMin = arr[0] ; 
+
+    int currMax = 0  , currMin = 0 ; 
+    int total = 0 ; 
+    for(int i=0 ; i<n ; i++){ 
+        total += arr[i] ; 
+        currMax = max(currMax + arr[i] , arr[i] ) ; 
+        globalMax = max( globalMax , currMax ) ; 
+        currMin = min(currMin + arr[i] , arr[i] ) ; 
+        globalMin = min( globalMin , currMin ) ;  
+    }
+
+    if(globalMax < 0) {
+        return globalMax ; 
+    } 
+
+    return max(globalMax , total - globalMin) ; 
+}
 
 
 int main() {
     vector<int> arr = {8, -8, 9, -9, 10, -11, 12} ; 
     cout << maxSum1(arr) << endl; 
-
+    cout << maxSum2(arr) << endl; 
     return 0 ; 
 }
