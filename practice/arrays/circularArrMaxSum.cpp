@@ -27,14 +27,7 @@ int maxSum1(vector<int> &arr ) {
 
 //Better approach 
 
-int maxSum2(vector<int> &arr) {
-    int n = arr.size() ; 
-    int suffixSum = arr[n-1] ; 
 
-    vector<int> maxSuffix(n+1 ,0) ;
-    maxSuffix
-
-}
 
 int main() {
     vector<int> arr = {8, -8, 9, -9, 10, -11, 12} ; 
