@@ -21,9 +21,32 @@ int findMajor(vector<int> &arr) {
     } 
 
     return -1 ; 
+} 
+
+int findMajority(vector<int> &arr) {
+    int n = arr.size() ; 
+
+    sort( arr.begin() , arr.end() ) ; 
+
+    int i=0 ;  
+    while( i < arr.size() - n/2 ) {
+        if( arr[i] == arr[i + n/2 ] ) {
+            return arr[i] ;
+        } 
+        i++ ;
+    } 
+
+    return -1 ; 
+}  
+
+int findMajority(vector<int> &arr) {
+    int n = arr.size() ; 
+
+    
 }
+
 int main() {
-    vector<int> arr = {1, 1, 2, 1, 3, 5, 1};   
+    vector<int> arr = {1, 5, 2, 5, 3, 5, 5};   
 
     cout << findMajor(arr) << endl; 
 
