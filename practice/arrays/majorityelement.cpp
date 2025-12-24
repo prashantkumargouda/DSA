@@ -82,11 +82,40 @@ int findMajority3(vector<int> &arr) {
     return -1 ; 
 } 
 
-int findMajority4(vector<int> &arr) {
+int mooresMajority(vector<int> &arr){
     int n = arr.size() ; 
 
-    // using moores voting algorithm  
-     
+    // this happens initially 
+    int count = 0 , candidate = -1 ; 
+
+    for(int num : arr) {
+        if( count == 0 ) {
+            candidate = num ; 
+            count = 1 ; 
+        } 
+        else if( num == candidate ) {
+            count++ ;
+        } 
+        else{
+            count-- ; 
+        } 
+        // here found the potential candidate  
+    } 
+
+    count = 0 ; 
+    for(int num : arr) {
+        if( num == candidate ) {
+            count++ ; 
+        } 
+    } 
+
+    if( count > n/2 ) {
+        return candidate ; 
+    } 
+    else {
+        return -1 ; 
+    }
+
 }
 
 int main() {
@@ -96,6 +125,7 @@ int main() {
     cout << findMajority1(arr) << endl; 
     cout << findMajority2(arr) << endl;  
     cout << findMajority3(arr) << endl; 
+    cout << mooresMajority(arr) << endl;  
 
     return 0 ; 
 }
