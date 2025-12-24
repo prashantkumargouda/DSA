@@ -4,7 +4,7 @@
 
 using namespace std ; 
 
-int countTri(vector<int> &arr) {
+int countTri1(vector<int> &arr) {
     int n = arr.size() ; 
     int count = 0 ; 
     // checking all the triplets  
@@ -56,9 +56,41 @@ int countTri2(vector<int> &arr) {
     return res ; 
 }
 
+int countTri3(vector<int> &arr) {
+    int n = arr.size() ; 
+
+    // using two pointers approach 
+    int res = 0 ; 
+
+    for(int i=2 ; i<n ; i++) {
+        int left = 0 , right = i-1 ; 
+
+        while( left < right ) {
+            if( arr[left] + arr[right] > arr[i] ) {
+                // if right is working 
+                // then any value greater than left till right 
+                // is going to work fine 
+                // thats why used right - left 
+                // arr[left] + arr[right] > arr[i] 
+                // arr[left+1] + arr[right] > arr[i] 
+                // arr[left + 2 ] + arr[right] > arr[i] 
+                res += right - left ;  
+                // for more smaller values to check 
+                right-- ; 
+            } else{  
+                // for larger values to check 
+                left++ ; 
+            }
+        }
+    } 
+
+    return res ; 
+} 
+
 int main() {
     vector<int> arr = {4,6,3,7} ; 
-    cout << countTri(arr) << endl; 
-    cout << countTri2(arr) << endl; 
+    cout << countTri1(arr) << endl; 
+    cout << countTri2(arr) << endl;  
+    cout << countTri3(arr) << endl; 
     return 0 ; 
 }
