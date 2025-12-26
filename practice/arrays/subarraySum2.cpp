@@ -82,7 +82,7 @@ int main() {
     for(int x:temp) {
         cout << x << " " ; 
     } 
-
+ 
     cout << endl;  
 
     vector<int> temp1 = sumSub2(arr , 23) ; 
