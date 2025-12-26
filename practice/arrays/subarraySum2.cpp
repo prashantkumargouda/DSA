@@ -2,6 +2,7 @@
 
 #include <iostream> 
 #include <vector> 
+#include <unordered_map> 
 
 using namespace std ; 
 
@@ -28,6 +29,7 @@ vector<int> sumSub(vector<int> &arr ,int x) {
     return {-1} ; 
 } 
 
+// Expected approach using sliding window 
 vector<int> sumSub2(vector<int> &arr , int target ){
     int i=0 , j=0 , sum = 0 ; 
 
@@ -46,6 +48,31 @@ vector<int> sumSub2(vector<int> &arr , int target ){
     } 
 
     return {-1} ; 
+} 
+
+// using prefixSum and hashmap 
+vector<int> sumSub3(vector<int> &arr , int x ) {
+    int n = arr.size() ; 
+
+    unordered_map<int , int> map ; 
+
+    int currSum = 0 ; 
+    for(int i=0 ; i<n ; i++) {
+        currSum = currSum + arr[i] ;  
+
+        // okay hai yahan pe currSum  
+        if( currSum == x ) {
+            return {1 , i+1} ; 
+        } 
+
+        if( map.find( currSum - x ) != map.end() ){
+            return {map[currSum - x]+1 , i+1} ; 
+        }
+
+        map[currSum] = i ;  
+    } 
+
+    return {-1} ; 
 }
 
 int main() {
@@ -61,6 +88,14 @@ int main() {
     vector<int> temp1 = sumSub2(arr , 23) ; 
 
     for(int x : temp1) {
+        cout << x << " " ; 
+    } 
+
+    cout << endl;  
+
+    vector<int> temp2 = sumSub3(arr, 23) ; 
+    
+    for(int x : temp){
         cout << x << " " ; 
     } 
 
