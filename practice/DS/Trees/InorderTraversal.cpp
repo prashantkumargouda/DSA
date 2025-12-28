@@ -15,14 +15,46 @@ public :
     }
 };  
 
-void inorder(Node* node , vector<int> &res ) {
+void inOrder1(Node* node , vector<int> &res ) {
     if( node == NULL ) {
         return ; 
     } 
 
-    inorder( node -> left , res ) ;     
+    inOrder1( node -> left , res ) ;     
     res.push_back( node -> data ) ; 
-    inorder( node -> right , res ) ; 
+    inOrder1( node -> right , res ) ; 
+}
+
+vector<int> inOrder2(Node* root) {
+    vector<int> inorder ;  
+
+    Node* curr = root ; 
+
+    while( curr != nullptr ) {
+        if( curr -> left == NULL ) {
+            inorder.push_back(curr ->data ) ; 
+            curr = curr -> right ; 
+        } 
+        else {
+            Node* prev = curr -> left  ; 
+            while( prev -> right != NULL && prev -> right != curr ) {
+                prev = prev -> right ; 
+            } 
+
+            if( prev -> right == NULL ) {
+                prev -> right = curr ; 
+                curr = curr -> left ; 
+            } 
+            else {
+                prev -> right = NULL ; 
+                inorder.push_back(curr -> data) ;  
+                curr = curr -> right ; 
+            }
+        }
+    } 
+
+    return inorder ; 
+
 }
 
 int main() {
@@ -37,9 +69,16 @@ int main() {
     root -> right -> right = new Node(6) ;  
 
     vector<int> res ;
-    inorder( root , res) ; 
-
+    inOrder1( root , res) ; 
     for(int x : res ){
+        cout << x << " " ; 
+    } 
+
+    cout << endl;  
+
+    vector<int> temp = inOrder2(root) ; 
+
+    for(int x : temp) {
         cout << x << " " ; 
     } 
 
