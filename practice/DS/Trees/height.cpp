@@ -3,7 +3,9 @@
 // 2 methods 
 // recursive and another one is level order traversal 
 
-#include <iostream> 
+#include <iostream>  
+#include <queue> 
+
 using namespace std ; 
 
 class Node{
@@ -29,6 +31,36 @@ int height(Node* root) {
     return max( lheight , rheight ) + 1 ;
 } 
 
+int qheight(Node* root) {
+    // visiting all the nodes possible 
+    // making use of a queue to do so 
+
+    queue<Node*> q ; 
+
+    int currLevel = 0; 
+    q.push(root) ; 
+    
+    while(!q.empty()) {
+        int len = q.size() ;  
+
+        for(int i=0 ; i<len ; i++){
+            Node* curr = q.front() ; 
+            q.pop() ; 
+
+            if( curr -> left != nullptr ) {
+                q.push( curr -> left ) ; 
+            } 
+            if( curr -> right != nullptr ) {
+                q.push( curr -> right ) ; 
+            }
+        } 
+        currLevel++ ; 
+    } 
+
+    return currLevel-1 ; 
+
+} 
+
 int main(){
     Node* root = new Node(12) ; 
     root -> left = new Node(8) ;
@@ -39,7 +71,116 @@ int main(){
     root -> left -> right = new Node(11) ; 
 
     cout << height(root) << endl; 
-
+    cout << qheight(root) << endl; 
     return 0 ; 
 
-}
+} 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// bhai just chase your dreams 
+// and see yourself where you stand 
+// try to do something great and something which you are not imagining at this point of your life 
+// to be great you need to work like the greats    
+
