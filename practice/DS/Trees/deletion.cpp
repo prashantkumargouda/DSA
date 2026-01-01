@@ -29,14 +29,14 @@ void deleteDeepest(Node* root , Node* dNode ) {
  
         if( curr == dNode ) { 
             curr = nullptr ; 
-            delete(curr)  ; 
+            delete(dNode)  ; 
             return  ;
         } 
 
         if( curr -> right != NULL ) {
             if( curr -> right == dNode ) {
                 curr -> right = NULL ;  
-                delete(curr -> right) ; 
+                delete(dNode) ; 
                 return ; 
             } 
             q.push(curr -> right ) ; 
@@ -44,7 +44,7 @@ void deleteDeepest(Node* root , Node* dNode ) {
         if( curr -> left != NULL ) {
             if( curr -> left == dNode ) {
                 curr -> left = NULL ; 
-                delete(curr -> left) ; 
+                delete(dNode) ; 
                 return ; 
             } 
             q.push(curr -> left) ; 
@@ -73,7 +73,7 @@ Node* deletion(Node* root , int key ) {
     q.push(root) ;  
 
     Node* curr ; 
-    Node* keyNode ;  
+    Node* keyNode = nullptr ;  
 
     while( !q.empty() ) {
         curr = q.front() ; 
