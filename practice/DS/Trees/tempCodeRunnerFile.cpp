@@ -1,0 +1,1 @@
+addEdge( adj , 1 , 2 ) ;
