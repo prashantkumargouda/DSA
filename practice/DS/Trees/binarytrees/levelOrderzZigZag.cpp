@@ -4,72 +4,38 @@
 
 // medium 
 
-#include <iostream>  
-#include <vector> 
-#include <queue> 
+class Solution {
+public:
+    vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
+        vector<vector<int>> res;
+        if (!root) return res;
 
-using namespace std ; 
+        deque<TreeNode*> dq;
+        dq.push_back(root);
+        bool reverse = false;
 
-class Node {
-public : 
-    int data ; 
-    Node* left ; 
-    Node* right ; 
+        while (!dq.empty()) {
+            int size = dq.size();
+            vector<int> level;
 
-    Node(int x) {
-        data = x ; 
-        left = right = NULL ; 
-    }
-};  
-
-vector<vector<int>> zigzagLevelOrder(Node* root) { 
-    vector<vector<int>> res ; 
-    if( root == NULL ) return res;  
-
-    queue<Node*> q ; 
-    q.push( root ) ; 
-
-    int level = 0 ; 
-    while( !q.empty() ) {
-        int size = q.size() ; 
-        res.push_back({}) ; 
-        
-        for(int i=0 ; i<size ; i++) {
-            Node* curr = q.front() ; 
-            q.pop() ; 
-            
-            res[level].push_back(curr -> data) ; 
-            if( level % 2 == 0 ) {
-                if( curr -> right ) q.push( curr -> right ) ; 
-                if( curr -> left ) q.push( curr -> left  ) ; 
-            } 
-            else {
-                if( curr -> left ) q.push( curr -> left  ) ;  
-                if( curr -> right ) q.push( curr -> right ) ;
+            for (int i = 0; i < size; i++) {
+                if (!reverse) {
+                    TreeNode* node = dq.front(); dq.pop_front();
+                    level.push_back(node->val);
+                    if (node->left) dq.push_back(node->left);
+                    if (node->right) dq.push_back(node->right);
+                } else {
+                    TreeNode* node = dq.back(); dq.pop_back();
+                    level.push_back(node->val);
+                    if (node->right) dq.push_front(node->right);
+                    if (node->left) dq.push_front(node->left);
+                }
             }
-        }   
-        level++ ; 
-    }  
 
-    return res ; 
-}
+            res.push_back(level);
+            reverse = !reverse;
+        }
 
-int main() { 
-    Node* root = new Node(3) ;
-    root -> left = new Node(9) ; 
-    root -> right = new Node(20) ; 
-
-    root -> right -> left = new Node(15) ; 
-    root -> right -> right = new Node(7) ; 
-
-    vector<vector<int>> temp = zigzagLevelOrder(root) ; 
-
-    for( vector<int> t : temp ) {
-        for(int x : t ) {
-            cout << x << " " ;
-        } 
-        cout << endl; 
+        return res;
     }
-    
-    return 0 ; 
-}
+};
