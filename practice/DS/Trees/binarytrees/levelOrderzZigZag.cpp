@@ -55,6 +55,20 @@ vector<vector<int>> zigzag(Node* root) {
     return res ; 
 } 
 
+// trying out another method to solve this problem 
+// Ill use the height of the tree until a certain postion 
+// if odd reverse 
+// else keep it same 
+// and append the solution 
+
+vector<vector<int>> zigzag(Node* root) {
+    vector<vector<int>> res;  
+    
+    if( root == NULL ) return res;  
+
+    
+} 
+
 int main() {
     Node* root = new Node(3) ;
     root -> left = new Node(9) ;
