@@ -16,7 +16,7 @@ public :
 } ; 
 
 bool check(TreeNode* root , long minVal , long maxVal ) {
-        if( root == NULL ) return true; 
+        if( root == NULL ) return true;     
 
         if( root -> data <= minVal || root -> data >= maxVal ) {
             return false ; 
