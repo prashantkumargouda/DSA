@@ -1,5 +1,7 @@
 #include <iostream> 
-#include <deque> 
+#include <deque>  
+#include <queue> 
+#include <algorithm> 
 #include <vector> 
 
 using namespace std ; 
@@ -61,13 +63,46 @@ vector<vector<int>> zigzag(Node* root) {
 // else keep it same 
 // and append the solution 
 
-vector<vector<int>> zigzag(Node* root) {
-    vector<vector<int>> res;  
-    
-    if( root == NULL ) return res;  
+// using bfs plus queue and reverse the nodes at odd level  
+vector<vector<int>> zigzag1(Node* root) {
+    vector<vector<int>> res ; 
 
+    if( root == NULL ) return res;   
+
+    bool reverse = false ; 
+
+    queue<Node*> q ; 
+    q.push(root) ;  
+
+    int level = 1; 
     
+    while(!q.empty()) {
+        int len = q.size(); 
+        vector<int> temp;  
+
+        for(int i=0 ; i<len ; i++) {
+            Node* curr = q.front() ; 
+            q.pop() ; 
+
+            temp.push_back(curr -> data) ; 
+            
+            if( curr -> left ) q.push(curr -> left) ; 
+            if( curr -> right ) q.push(curr -> right) ; 
+        } 
+
+        if( reverse ) {
+            std::reverse(temp.begin() , temp.end()) ; 
+        }   
+
+        reverse = !reverse ;  
+        res.push_back(temp) ; 
+    } 
+
+    return res ;
+
 } 
+
+
 
 int main() {
     Node* root = new Node(3) ;
@@ -85,7 +120,16 @@ int main() {
             cout << x << " " ; 
         }   
         cout << endl; 
-    } 
+    }  
+
+    vector<vector<int>> temp1 = zigzag1(root) ; 
+
+    for(auto &e : temp1) {
+        for(int x:e) {
+            cout << x << " " ; 
+        } 
+        cout << endl; 
+    }
 
     return 0 ; 
 } 
