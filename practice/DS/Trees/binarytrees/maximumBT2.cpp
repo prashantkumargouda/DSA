@@ -43,10 +43,7 @@ Node* insertInto(Node* root , int val) {
 
     for(int i=0 ; i<n ; i++){
         checkMap[res[i]] = i ; 
-        
     }
-
-
 }
 
 int main() { 
