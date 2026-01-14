@@ -70,7 +70,6 @@ int main() {
     Node* root = buildTree(postOrder , inOrder) ; 
 
     cout << "Printing inorder for the created binary tree" << endl; 
-
     printInorder(root) ; 
 
     return 0 ; 
