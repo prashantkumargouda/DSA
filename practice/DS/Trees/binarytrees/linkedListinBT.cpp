@@ -34,10 +34,52 @@ public :
     }
 }; 
 
-bool isCorrect(Node* root , LinkedList* head) {
-    
+bool match(Node* root , LinkedList* head) { 
+    if( head == nullptr ) return true ;  
+    if( root == nullptr ) return true ; 
+
+    if( root -> data != head -> data ) return false ; 
+
+    return match( root -> left , head -> next ) || match( root -> right , head -> next ) ; 
+} 
+
+bool check(Node* root , LinkedList* head) {
+    if( root == NULL ) return false ; 
+
+    if( match( root , head ) ) return true ; 
+
+    return check( root -> left , head ) || check( root -> right , head ) ; 
 }
 
 int main() {
+    // creating the binary tree
+    Node* root = new Node(1) ; 
+    root -> left = new Node(4) ; 
+    root -> right = new Node(4) ; 
 
+    root -> left -> right = new Node(2) ;  
+    root -> left -> right -> left = new Node(1) ;  
+
+    root -> right -> left = new Node(2) ; 
+    root -> right -> left -> left = new Node(6) ; 
+    root -> right -> left -> right = new Node(8) ; 
+
+    root -> right -> left -> right -> left = new Node(1) ; 
+    root -> right -> left -> left -> right = new Node(3) ; 
+
+    // creating the linked list  
+    LinkedList* head = new LinkedList(4) ; 
+    head -> next = new LinkedList(2) ; 
+    head -> next -> next = new LinkedList(8) ; 
+
+    cout << "Checking if true " << endl; 
+
+    if( check(root ,head) ) {
+        cout << "TRUE" << endl;
+    } 
+    else{
+        cout << "FALSE" << endl;
+    } 
+
+    return 0 ; 
 }
