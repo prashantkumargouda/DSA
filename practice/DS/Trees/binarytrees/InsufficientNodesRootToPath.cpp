@@ -1,0 +1,85 @@
+// 1080. Insufficient Nodes in Root to Leaf Paths 
+// medium 
+
+#include <iostream> 
+#include <vector> 
+
+using namespace std ; 
+
+class Node{
+public : 
+    int data ; 
+    Node* left ; 
+    Node* right ; 
+
+    Node(int x) {
+        data = x ; 
+        left = right = NULL ;
+    }
+}; 
+
+void check(Node* root , int limit , int sum) {
+    if( root == NULL ) {
+        return ;
+    } 
+
+    sum += root -> data ; 
+    if( sum < limit ) {
+        root = nullptr ; 
+        delete(root) ; 
+        return ; 
+    } 
+
+    if( root -> left ) check( root -> left , limit , sum ) ; 
+    if( root -> right ) check( root -> right , limit , sum ) ; 
+
+}
+
+Node* sufficientNodes(Node* root , int limit) {
+    if( root == NULL || root -> data < limit ) return NULL ;   
+    
+    check(root , limit , root -> data ) ; 
+
+    return root ; 
+}
+
+vector<int> inorder(Node* root , vector<int> &res) {
+    if( root == NULL ) return {} ; 
+
+    inorder(root -> left , res) ; 
+    res.push_back(root -> data) ; 
+    inorder( root -> right , res) ; 
+}
+
+int main() {
+    Node* root = new Node(1) ; 
+    root -> left = new Node(2) ; 
+    root -> right = new Node(3) ; 
+
+    root -> left -> left = new Node(4) ; 
+    root -> left -> right = new Node(-99) ; 
+
+    root -> right -> left = new Node(-99) ; 
+    root -> right -> right = new Node(7) ; 
+
+    root -> right -> left -> left = new Node(12) ; 
+    root -> right -> left -> right = new Node(13) ; 
+
+    root -> right -> right -> left = new Node(-99) ; 
+    root -> right -> right -> right = new Node(14) ; 
+
+    vector<int> res ; 
+    int limit = 1 ; 
+    Node* temp = sufficientNodes(root , limit)  ; 
+
+    vector<int> temp1 = inorder(temp , res) ; 
+    
+    for(int x : temp1) {
+        cout << x << " "; 
+    } 
+
+    cout << endl; 
+
+    return 0 ; 
+
+}
