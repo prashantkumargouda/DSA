@@ -18,29 +18,34 @@ public :
     }
 }; 
 
-void check(Node* root , int limit , int sum) {
-    if( root == NULL ) {
-        return ;
-    } 
+Node* check(Node* root , int limit , int sum) {
+    if( root == NULL ) return NULL ; 
 
     sum += root -> data ; 
-    if( sum < limit ) {
-        root = nullptr ; 
-        delete(root) ; 
-        return ; 
+
+    // deletion of leaf node if sum is less than limit 
+    if( !root -> left && !root -> right ) {
+        if( sum < limit ) {
+            return nullptr ; 
+        }
+        return root ; 
     } 
 
-    if( root -> left ) check( root -> left , limit , sum ) ; 
-    if( root -> right ) check( root -> right , limit , sum ) ; 
+    root -> left = check( root -> left , limit , sum ) ; 
+    root -> right = check( root -> right , limit , sum ) ; 
 
-}
+    // if all the nodes through this from root to leaf are sum < limit then it is insufficient so deleted 
 
-Node* sufficientNodes(Node* root , int limit) {
-    if( root == NULL || root -> data < limit ) return NULL ;   
-    
-    check(root , limit , root -> data ) ; 
+    if( !root -> left && !root -> right ){
+        return nullptr ; 
+    } 
 
     return root ; 
+
+} 
+
+Node* sufficientNodes(Node* root , int limit) {
+    return check(root , limit , 0) ;  
 }
 
 vector<int> inorder(Node* root , vector<int> &res) {
