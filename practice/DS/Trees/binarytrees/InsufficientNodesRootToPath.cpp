@@ -49,7 +49,7 @@ Node* sufficientNodes(Node* root , int limit) {
 }
 
 vector<int> inorder(Node* root , vector<int> &res) {
-    if( root == NULL ) return {} ; 
+    if( root == NULL ) return {} ;  
 
     inorder(root -> left , res) ; 
     res.push_back(root -> data) ; 
