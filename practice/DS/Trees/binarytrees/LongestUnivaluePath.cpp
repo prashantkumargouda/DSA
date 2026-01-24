@@ -26,14 +26,17 @@ public :
 int res = 0 ; 
 int check(Node* root , int x) {
     if( !root ) return 0 ; 
-    if( root -> data != x ) return 0 ; 
-
+    
     int num1 = check(root -> left , root -> data) ;  
     int num2 = check(root -> right , root -> data) ;  
-
-    res = max( res , num1 + num2) ; 
-
-    return max(num1 , num2) + 1 ; 
+    
+    res = max(num1 + num2 , res) ; 
+    
+    if( root -> data == x ) {
+        return max(num1 , num2) + 1 ; 
+    } else {
+        return 0 ; 
+    }
 } 
 
 int longestPath(Node* root) {
