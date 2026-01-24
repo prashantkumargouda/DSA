@@ -23,42 +23,36 @@ public :
     }
 }; 
 
-void inorder(Node* root , vector<int> &res) {
-    if( root == NULL ) return ; 
+int res = 0 ; 
+int check(Node* root , int x) {
+    if( !root ) return 0 ; 
+    if( root -> data != x ) return 0 ; 
 
-    inorder(root -> left, res) ; 
-    res.push_back(root -> data) ; 
-    inorder(root -> right , res) ; 
-}
+    int num1 = check(root -> left , root -> data) ;  
+    int num2 = check(root -> right , root -> data) ;  
 
-int check(Node* root , int &count ,int value, unordered_map<int , int> &checkMap) {
-    if( !root ) return 0;  
+    res = max( res , num1 + num2) ; 
 
-    if( !root -> left && !root -> right ) {
-        checkMap[root -> data] = max( checkMap[root -> data] , count ) ; 
-    } 
+    return max(num1 , num2) + 1 ; 
+} 
 
-    if( root -> data == value ) count += 1 ; 
-    
-
-}
 int longestPath(Node* root) {
     if(!root) return 0 ; 
 
-    unordered_map<int , int> checkMap ;  
-    vector<int> res ; 
-    inorder(root , res) ; 
-
-    // checkMap prepared 
-    for(int i : res) {
-        checkMap[i] = 0 ; 
-    }  
-
-    int count = 0 ; 
-    int n = max( check( root -> left , count , root -> data , checkMap ) , check( root -> right , count , root -> data , checkMap ) ) ;   
-
-} 
+    check(root , root -> data) ; 
+    return res ;
+}
 
 int main(){
+    Node* root = new Node(1) ; 
+    root -> left = new Node(4) ; 
+    root -> left -> left = new Node(4) ; 
+    root -> left -> right = new Node(4) ; 
 
-}
+    root -> right = new Node(5) ; 
+    root -> right -> right = new Node(5) ; 
+
+    cout << longestPath(root) << endl; 
+
+    return 0 ; 
+}   
