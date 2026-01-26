@@ -50,8 +50,8 @@ vector<int> bfs(vector<vector<int>> &adj , int n) {
             }
         } 
 
-        return bfs ; 
     }
+    return bfs ; 
 } 
 
 int main() {  
