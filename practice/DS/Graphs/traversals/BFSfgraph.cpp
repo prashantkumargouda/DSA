@@ -27,7 +27,7 @@ vector<vector<int>> makeCheck() {
     return adj ; 
 }  
  
-vector<int> bfs(vector<vector<int>> &adj , int n) {
+vector<int> bfsCheck(vector<vector<int>> &adj , int n) {
     // using this adjacency list to form the level order   
     // visited array of size n+1 
     // for 0,1,2,3 ......... x 
@@ -58,7 +58,7 @@ int main() {
 
     vector<vector<int>> res = makeCheck() ;  
     int n = 5 ; 
-    vector<int> temp = bfs(res , n) ;  
+    vector<int> temp = bfsCheck(res , n) ;  
 
     for(auto i : temp) {
         cout << i << " " ;  

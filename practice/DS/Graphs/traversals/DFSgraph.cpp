@@ -29,6 +29,6 @@ void dfs(int node , vector<vector<int>> adj , vector<int> &ls , vector<int> &vis
         if(!vis[it]) {
             dfs(it , adj , ls , vis) ; 
         }
-    } 
+    }  
 }    
 
