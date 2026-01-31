@@ -49,8 +49,8 @@ vector<int> bfsCheck(vector<vector<int>> &adj , int n) {
                 q.push(it) ; 
             }
         } 
-
     }
+    
     return bfs ; 
 } 
 

@@ -37,7 +37,6 @@ int countCheck(vector<vector<int>> isConnected) {
     } 
 
     return count ; 
-
 } 
 
 int main() {
