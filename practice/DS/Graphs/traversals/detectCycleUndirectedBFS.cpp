@@ -30,7 +30,7 @@ bool detect(int src , vector<int> adj[] , vector<int> &vis) {
     } 
 
     return false ;  
-} 
+}  
 
 bool isCycle(int V , vector<int> adj[]) {
     vector<int> vis(V , 0) ;
