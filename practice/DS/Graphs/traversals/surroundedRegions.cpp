@@ -14,21 +14,55 @@
 
 using namespace std ; 
 
-void solve(vector<vector<char>> &board){
+void dfs(int row , int col , vector<vector<char>> &board , vector<vector<int>> &vis) {
+    vis[row][col] = 1 ;  
+
+    int rows = board.size() ; 
+    int cols = board[0].size() ; 
+
+    int delRow[] = {-1 , 0 , 1 , 0} ; 
+    int delCol[] = {0 , 1 , 0 , -1} ; 
+
+    for(int i=0 ; i<4 ; i++) {
+        int nrow = row + delRow[i];  
+        int ncol = col + delCol[i]; 
+
+        if( nrow >= 0 && nrow < rows && ncol >= 0 && ncol < cols && !vis[nrow][ncol] && board[nrow][ncol] == 'O'){
+            dfs(nrow , ncol , board , vis) ; 
+        }
+    }
+} 
+
+void solve(vector<vector<char>> &board) {
     int row = board.size() ; 
     int col = board[0].size() ; 
 
-    vector<vector<int>> vis(row , vector<int>(col ,0)) ; 
+    vector<vector<int>> vis( row , vector<int>(col , 0)) ; 
 
-    // going through the 2 rows and 2 columns 
-    // here comes the first row 
-    for(int j=0 ; j<col ; j++) {
-        if( !vis[0][j] && board[0][j] == '0' ) {
-            vis[0][j] = 1 ; 
+    for(int i=0 ; i<col ; i++) {
+        if( !vis[0][i] && board[0][i] == 'O'){
+            dfs( 0 , i , board , vis) ; 
+        } 
+        if( !vis[row - 1][i] && board[row - 1][i] == 'O' ) {
+            dfs(row - 1, i , board , vis) ; 
+        } 
+    } 
+
+    // we now check for values present in the first and last column  
+    for(int i=0 ; i<row ; i++) {
+        if( !vis[i][0] && board[i][0] == 'O' ) {
+            dfs(i , 0, board , vis) ; 
+        } 
+        if( !vis[i][col -1] && board[i][col -1] ) {
+            dfs(i , col - 1 , board , vis) ; 
         }
-    }
-}
+    } 
 
-int main() {
-
+    for(int i=0 ; i<row ; i++) {
+        for(int j=0 ; j<col ; j++) {
+            if( !vis[i][j] && board[i][j] == 'O' ){
+                board[i][j] = 'X' ; 
+            }
+        }
+    } 
 }
