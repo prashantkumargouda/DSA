@@ -4,28 +4,28 @@
 
 using namespace std ; 
 
-bool dfs(int node ,vector<int> &vis , vector<vector<int>> &adj , vector<int> &check , vector<int> &pathVis) {
-    vis[node] = 1 ; 
-    pathVis[node] = 1 ; 
+    bool dfs(int node ,vector<int> &vis , vector<vector<int>> &adj , vector<int> &check , vector<int> &pathVis) {
+        vis[node] = 1 ; 
+        pathVis[node] = 1 ; 
 
-    check[node] = 0 ; 
+        check[node] = 0 ; 
 
-    for(auto it : adj[node]) {
-        if( !vis[it] ) {
-            if( dfs(it , vis , adj , check , pathVis ) ) { 
+        for(auto it : adj[node]) {
+            if( !vis[it] ) {
+                if( dfs(it , vis , adj , check , pathVis ) ) { 
+                    return true ; 
+                } 
+            }
+            else if( pathVis[it] ) {
                 return true ; 
             } 
-        }
-        else if( pathVis[it] ) {
-            return true ; 
         } 
-    } 
-     
-    check[node] = 1 ; 
-    pathVis[node] = 0 ;  
+        
+        check[node] = 1 ; 
+        pathVis[node] = 0 ;  
 
-    return false ;
-} 
+        return false ;
+    } 
 
 vector<int> safeNodes(int V , vector<vector<int>> &edges) { 
     vector<vector<int>> adj(V) ; 
