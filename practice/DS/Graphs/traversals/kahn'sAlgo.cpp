@@ -48,7 +48,7 @@ vector<int> kahns(int V , vector<vector<int>> &edges) {
             }
         } 
     }
-
+    if( ans.size() != V ) return {} ;
     return ans ; 
 
 } 
