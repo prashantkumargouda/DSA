@@ -10,13 +10,9 @@
 //                                             [[2, 2], [4, 10]], 
 //                                             [[1, 6], [3, 10]]] 
 
-#include <iostream>  
-#include <vector> 
-
+#include <iostream> 
 using namespace std ; 
 
-
-int main() 
-{
+int main() { 
 
 }
