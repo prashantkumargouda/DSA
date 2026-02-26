@@ -18,7 +18,7 @@ using namespace std ;
 
 vector<int> findShortest(int V , vector<vector<int>> &edges , int src){
     vector<vector<pair<int, int>>> adj(V) ; 
-    vector<int> dis(V) ; 
+    vector<int> dis(V , INT_MAX) ; 
 
     for(auto &e : edges) {
         int u = e[0] ; 
