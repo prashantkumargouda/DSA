@@ -16,7 +16,6 @@ int findCheapestPrice(int V , vector<vector<int>> &flights , int src , int dst ,
     vector<int> dis(V , INT_MAX) ;  
 
     vector<vector<pair<int , int>>> adj(V) ; 
-     
     for(auto &e : flights) {
         int u = e[0] ; 
         int v = e[1] ; 
