@@ -1,83 +1,72 @@
-#include <iostream> 
+#include <iostream>  
 #include <vector> 
-#include <numeric> 
+#include <algorithm> 
+#include <set> 
 
 using namespace std ; 
 
-// the problem is to find : 
-// the last player who is going to play the move 
-// and then check if it is non decreasing or not 
-// if it is non decreasing bob wins  
-// if not alice wins 
+typedef long long ll ; 
 
-// now the question is about how are we going to count the no of moves to find the last move to be taken 
-// we do that by finding the smallest prime numbers for all the elements in the array 
+ll primeBase(ll t) {
+	set<ll> st ;  // using this set to get the distinct prime factors for the number 
 
-// so we pre calculate the primes for these numbers 
-
-const int MAXV = 1e6 + 5 ;
-int spf[MAXV] ; 
-
-void seive() {
-	// use the iota to mark all the values in array spf 
-	iota(spf , spf + MAXV , 0) ;  
-
-	// now starting with 2 
-	for(int i=2 ; i*i < MAXV ; i++) {
-		if( spf[i] == i ) {
-			for(int j=i*i ; j<MAXV ; j+=i) {
-				if( spf[j] == j ) spf[j] = i ; 
+	for(int i=2 ; i*i <= t ; i++){
+		if( t % i == 0 ) {
+			while( t % i == 0 ) {
+				st.insert(i) ; 
+				t = t / i ; 
 			}
 		}
 	}
-} 
 
-int countMoves(int x) {
-	int count = 0 ; 
-	while( x>1 ) {
-		x = x / spf[x] ;  
-		count++ ; 
-	}
+	if( t > 1 ) {
+		st.insert(t); 
+	}  
+	if( st.size() > 1 ) {
+		return -1 ; 
+	} 
+	if( st.size() == 0 ) {
+		return 1; 
+	} 
 
-	return count ; 
-} 
+	return *st.begin() ;
+}  
 
-int main(){  
+int main() {
+	int test ; 
+	cin >> test ; 
 
-    seive() ; 
-
-	int t ; 
-	cin >> t ; 
-
-	while( t-- ) {
-		int n ; 
+	while( test-- ) {
+		ll n ;
 		cin >> n ; 
 
-		vector<int> a(n) ; 
-		for(auto& x: a) cin >> x ;   
-   		
-   		// alice wins if : it is not non decreasing( decreasing or zigzag( depending upon turns )) 
-   		// bob wins if : it is non decreasing( increasing or zigzag ) 
+		vector<ll> v1(n) ; 
+		for(auto &it : v1) cin >> it ; 
 
+		if( is_sorted(v1.begin() , v1.end()) ) {
+			cout << "Bob" << endl; 
+			continue ; 
+		}  
 
-		// checking if a is already sorted 
-		bool sorted = true ;
-
-		for(int i=0 ; i<n-1; i++) {
-			if( a[i] > a[i+1] ) { sorted = false ; break; } 
+		vector<ll> v2 ; 
+		for(int i=0 ; i<n ; i++) {
+			ll q = primeBase(v1[i]) ; 
+			v2.push_back(q) ; 
 		} 
- 
- 		if( sorted ) {
- 			cout << "Bob" << endl; 
- 			continue ; 
- 		} 
 
- 		long long moves = 0 ; 
+		if( *min_element(v2.begin() , v2.end() ) == -1 )  {
+			cout << "Alice" << endl; 
+			continue ;
+		} 
 
- 		for(int x : a) moves += max( 0 , countMoves(x) - 1 ) ; 
+		else if( is_sorted(v2.begin() , v2.end() ) ) {
+			cout << "Bob" << endl; 
+			continue ; 
+		}  
 
- 		cout << ((moves % 2 == 1) ? "Alice" : "Bob") ; 
+		else{
+			cout << "Alice" << endl; 
+		}
 
- 		cout << endl; 
 	}
 }
