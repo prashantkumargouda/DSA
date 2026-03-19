@@ -35,12 +35,28 @@ vector<int> solve1(vector<int> &nums) {
     return nums ; 
 }  
 
-vector<int> solve2(vector<int> &nums){
+vector<int> solve2(vector<int> nums) {
     int n = nums.size() ; 
 
-    
+    int low = 0 , mid = 0 , high = n-1 ; 
 
-} 
+    while( mid <= high ) {
+        if( nums[mid] == 0 ){
+            swap( nums[mid] , nums[low] ) ;  
+            low++ ; 
+            mid++ ; 
+        } 
+        else if( nums[mid] == 1 ) {
+            mid++ ; 
+        } 
+        else{
+            swap(nums[mid] , nums[high]) ; 
+            high-- ; 
+        }
+    }  
+    
+    return nums ; 
+}
 
 int main() {
     int n; 
@@ -49,9 +65,9 @@ int main() {
     vector<int> nums(n) ;
     for(auto &it : nums) cin >> it ; 
 
-    solve1(nums) ; 
+    vector<int> temp = solve2(nums) ; 
 
-    for(auto &it : nums) { 
+    for(auto &it : temp) { 
         cout << it << " " ; 
     } 
 

@@ -2,6 +2,7 @@
 
 #include <iostream>  
 #include <vector> 
+#include <unordered_map> 
 
 using namespace std ;
 
@@ -24,6 +25,31 @@ int longestSubArray(vector<int> &nums , int k) {
             maxLen = max( maxLen , right - left  ) ; 
         }      
 
+    } 
+
+    return maxLen ; 
+} 
+
+int solve2(vector<int> &nums , int k ) {
+    int n = nums.size() ; 
+
+    int sum = 0 ; 
+    int maxLen = 0 ; 
+
+    unordered_map<int , int> mp ; 
+
+    for(int i=0 ; i<n ; i++) {
+        sum += nums[i] ; 
+
+        if( sum == k ) maxLen = i+1 ; 
+
+        if( mp.find(sum - k) != mp.end() ) {
+            maxLen = max( maxLen , i - mp[sum - k] ) ; 
+        } 
+
+        if( mp.find(sum) == mp.end() ) {
+            mp[sum] = i ; 
+        }
     } 
 
     return maxLen ; 
