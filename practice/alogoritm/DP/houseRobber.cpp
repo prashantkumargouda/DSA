@@ -5,7 +5,7 @@
 #include <vector> 
 using namespace std ;  
 
-// memoization - recursion 
+// memoization 
 int f(int ind , vector<int> &nums , vector<int> &dp ) {
     if( ind == 0 ) return nums[ind] ; 
     if( ind < 0 ) return 0 ; 
