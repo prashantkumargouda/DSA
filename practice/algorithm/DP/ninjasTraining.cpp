@@ -32,12 +32,11 @@ int check(int day , vector<vector<int>> &task , int last ) {
 int check1(int day , vector<vector<int>> &task , int last , vector<vector<int>> &dp ) {
     if( day == 0 ) {
         int maxi = INT_MIN ; 
-        for(int i=0 ; i<3 ; i++) {
+        for(int i=0 ; i<3 ; i++) { 
             if( i != last ) {
                 maxi = max( maxi , task[day][last] ) ; 
             }
         } 
-
         return maxi ; 
     }  
 
@@ -55,13 +54,9 @@ int check1(int day , vector<vector<int>> &task , int last , vector<vector<int>> 
     return dp[day][last] = maxi ; 
 } 
 
-int check2(int day , vector<vector<int>> &task , int last , vector<vector<int>> &dp ) {
-    // trying out tabulation 
-    // bottom to top 
+// tabulation code
+int check2(int day , vector<vector<int>> &task , int last ) {
 
-    int maxi = *max_element( task[0].begin() , task[0].end() ) ; 
-    
-    
 }
 
 int main(){
