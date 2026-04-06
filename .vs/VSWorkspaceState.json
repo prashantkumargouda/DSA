@@ -1,9 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\AOC",
-    "\\AOC\\2020"
+    "\\AOC\\2020",
+    "\\practice",
+    "\\practice\\algorithm",
+    "\\practice\\algorithm\\DP"
   ],
-  "SelectedNode": "\\AOC\\2020\\binaryboarding.cpp",
+  "SelectedNode": "\\practice\\algorithm\\DP\\fibonacci.cpp",
   "PreviewInSolutionExplorer": false
 }
