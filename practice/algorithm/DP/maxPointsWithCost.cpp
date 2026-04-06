@@ -121,7 +121,7 @@ long long maxPoints2(vector<vector<int>> &points) {
     for(int i=1 ; i<n ; i++) {
         vector<ll> temp(m) ; 
 
-        
+        1
     }
 }
 
