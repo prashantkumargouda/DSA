@@ -1,25 +1,42 @@
-// Impost or Sus 
+// Impost Or Sus 
 
-#include <iostream>  
-#include <vector> 
-#include <string> 
+// A string w
+//  consisting of lowercase Latin letters is called suspicious if and only if all of the following conditions hold:
 
-using namespace std ;  
+// The letter s
+//  appears at least twice, and
+// For every occurrence of the letter u
+// , the two nearest occurrences of s
+//  are the same number of characters away from the u
+// .
+// After watching you finish a string task, your friend Aka has gifted you a string r
+//  consisting only of letters s
+//  and u
+// . You can perform the following operation on r
+// :
 
-int check(string str) {
-    int n = str.size() ; 
+// Choose an index i
+//  (1≤i≤|r|
+// ), and set ri
+//  to s
+// .
+// Determine the minimum number of operations needed to make r
+//  suspicious. It can be shown that, under the given constraints, it is always possible to transform r
+//  into a suspicious string. 
 
-    
-} 
+#include <iostream> 
+using namespace std ; 
 
 int main() {
     int t ; 
-    cin >> t; 
+    cin >> t ; 
 
     while( t-- ) {
         string str ; 
         cin >> str ; 
 
+        // check the gap between the S to its next S and then Make calculations 
 
+        // if odd and if even there will be cases to it     
     }
 }
