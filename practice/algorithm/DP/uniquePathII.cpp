@@ -9,7 +9,7 @@ int f(int i , int j , vector<vector<int>> &nums) {
     if( i<0 || j<0 ) return 0 ; 
 
     if( i>=0 && j>=0 && nums[i][j] == -1) {
-        return -1 ; 
+        return 0 ; 
     } 
 
     int up = f(i-1 , j , nums); 
