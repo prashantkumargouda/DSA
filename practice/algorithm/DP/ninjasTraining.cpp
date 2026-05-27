@@ -66,7 +66,7 @@ int ninjaTraining1(int n, vector<vector<int>> &points)
     dp[0][3] = max( points[0][1] , max( points[0][0] , points[0][2] )  ) ;  
 
     for(int day = 1 ; day < n ; day++) {
-        for(int last = 0 ; last < 4 ; last++ ) {
+        for(int last = 0 ; last < 4 ; last++ ) { // 0 1 2 3
             dp[day][last] = 0 ; 
             for(int task = 0 ; task < 3 ; task++) { 
                 if( task != last ) {
@@ -109,4 +109,5 @@ int ninjaTraining2(int n, vector<vector<int>> &points)
 
 int main(){
     
-}
+} 
+

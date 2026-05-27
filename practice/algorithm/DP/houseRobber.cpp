@@ -24,12 +24,13 @@ int f1(vector<int> &nums , vector<int> &dp) {
     dp[0] = nums[0]; 
     for(int i=1 ; i < n ; i++) {
         int take = nums[i] ; 
-        if( i > 1 ) take += dp[i-1] ;  
+        if( i > 1 ) take += dp[i-2] ;  
         
         int notTake = dp[i-1] ; 
 
         dp[i] = max( take , notTake ) ; 
     }  
+
     return dp[n-1] ; 
 } 
 
