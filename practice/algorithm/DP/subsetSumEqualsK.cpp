@@ -64,8 +64,10 @@ bool f1(int i , int target , vector<int> &arr , vector<vector<bool>> &dp) {
 }
 
 /* 
-    tabulation solution goes from n-1 to 0  
-*/ 
+    tabulation solution goes from n-1 to 0   
+    In this tabulation code I am trying to find if at every index if it is possible to find the j as target or not 
+*/  
+
 bool f2(int target , vector<int> &arr){ 
     int n = arr.size() ; 
     vector<vector<bool>> dp(n , vector<bool>(target + 1 , 0)) ;  
@@ -75,13 +77,15 @@ bool f2(int target , vector<int> &arr){
         dp[i][0] = true ; 
     } 
 
-    // mark the dp[i][target] = true ;  
-    dp[0][arr[0]] = true ; 
+    // mark the dp[i][target] = true ;   
+    if( arr[0] <= target ) {
+        dp[0][arr[0]] = true ; 
+    }
 
     // mark the remaining rows( 1 -> n-1 ) and the corresponding targets( 1 - k )  
     for(int i=1 ; i<n ; i++) {
         for(int j=1 ; j<=target ; j++) {
-            bool notTake = dp[i-1][j] ; 
+            bool notTake = dp[i-1][j] ;     
             bool take = false ; 
 
             if( arr[i] <= j ) take = dp[i-1][j - arr[i]] ;   
@@ -117,3 +121,4 @@ bool f3(int target , vector<int> &arr) {
     
     return prev[target] ; 
 }
+
