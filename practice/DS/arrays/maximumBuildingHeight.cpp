@@ -8,6 +8,7 @@ int maxBuilding(int n , vector<vector<int>> &restrictions) {
     restrictions.push_back({1,0}) ; 
     sort(restrictions.begin() , restrictions.end() ) ;  // sort it out 
 
+    // adding the ending block restrictions
     if( restrictions.back()[0] != n ) {
         restrictions.push_back({n , n-1}) ; 
     } 
@@ -28,6 +29,7 @@ int maxBuilding(int n , vector<vector<int>> &restrictions) {
 
     long long ans = 0 ; 
 
+    // finding the peak/max height of building between restrictions 
     for(int i=1 ; i<m ; i++){
         ll x1 = restrictions[i-1][0] ; 
         ll h1 = restrictions[i-1][1] ; 
@@ -41,4 +43,5 @@ int maxBuilding(int n , vector<vector<int>> &restrictions) {
     } 
 
     return ans ; 
-}
+} 
+
